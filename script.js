@@ -1,28 +1,44 @@
 /* 写真リスト */
 
-const images=[
+const images = [
+
 "2856C812-51A6-4756-8D68-9FCB0AA09324.JPEG",
 "IMG_9268.JPEG",
 "IMG_9325.JPEG",
-"IMG_9772.JPEG"
+"IMG_9772.JPEG",
+
+"IMG_9275.JPEG",
+"IMG_9550.JPEG",
+"IMG_9648.JPEG",
+"IMG_9724.JPEG",
+"IMG_9666.jpeg",
+"IMG_9664.jpeg"
+
 ];
 
-let current=0;
+let current = 0;
 
-const bg=document.getElementById("background");
+const bg = document.getElementById("background");
 
 function changeBackground(){
 
-bg.style.backgroundImage=
-"url('"+images[current]+"')";
+bg.style.opacity = 0;
+
+setTimeout(()=>{
+
+bg.style.backgroundImage = "url('" + images[current] + "')";
+
+bg.style.opacity = 1;
 
 current++;
 
-if(current>=images.length){
+if(current >= images.length){
 
-current=0;
+current = 0;
 
 }
+
+},800);
 
 }
 
@@ -38,19 +54,18 @@ setInterval(changeBackground,5000);
 
 /* タイプライター */
 
-const text=
+const text =
 "4ヶ月記念日おめでとう。\nいつもありがとう。\nこれからもよろしくね。\n大好きだよ。";
 
-let i=0;
+let i = 0;
 
-const speed=80;
+const speed = 80;
 
 function typeWriter(){
 
-if(i<text.length){
+if(i < text.length){
 
-document.getElementById("message").innerHTML
-+=text.charAt(i);
+document.getElementById("message").innerHTML += text.charAt(i);
 
 i++;
 
@@ -68,17 +83,17 @@ typeWriter();
 
 function createHeart(){
 
-const heart=document.createElement("div");
+const heart = document.createElement("div");
 
 heart.classList.add("heart");
 
-heart.innerHTML="❤";
+heart.innerHTML = "❤";
 
-heart.style.left=Math.random()*100+"vw";
+heart.style.left = Math.random()*100 + "vw";
 
-heart.style.bottom="-20px";
+heart.style.bottom = "-20px";
 
-heart.style.fontSize=(15+Math.random()*25)+"px";
+heart.style.fontSize = (15 + Math.random()*25) + "px";
 
 document.body.appendChild(heart);
 
@@ -96,15 +111,15 @@ setInterval(createHeart,700);
 
 /* キラキラ */
 
-const canvas=document.getElementById("sparkle");
+const canvas = document.getElementById("sparkle");
 
-const ctx=canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
-canvas.width=window.innerWidth;
+canvas.width = window.innerWidth;
 
-canvas.height=window.innerHeight;
+canvas.height = window.innerHeight;
 
-let particles=[];
+let particles = [];
 
 for(let i=0;i<80;i++){
 
@@ -149,13 +164,13 @@ for(let i=0;i<particles.length;i++){
 
 let p=particles[i];
 
-p.y+=p.d;
+p.y += p.d;
 
-if(p.y>canvas.height){
+if(p.y > canvas.height){
 
-p.y=0;
+p.y = 0;
 
-p.x=Math.random()*canvas.width;
+p.x = Math.random()*canvas.width;
 
 }
 
