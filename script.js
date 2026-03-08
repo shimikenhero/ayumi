@@ -1,6 +1,6 @@
-/* 写真リスト */
+/* 写真 */
 
-const images = [
+const images=[
 
 "2856C812-51A6-4756-8D68-9FCB0AA09324.JPEG",
 "IMG_9268.JPEG",
@@ -16,23 +16,23 @@ const images = [
 
 ];
 
-let current = 0;
+let current=0;
 
-const bg = document.getElementById("background");
+const bg=document.getElementById("background");
 
 function changeBackground(){
 
-bg.style.opacity = 0;
+bg.style.opacity=0;
 
 setTimeout(()=>{
 
-bg.style.backgroundImage = "url('" + images[current] + "')";
-bg.style.opacity = 1;
+bg.style.backgroundImage="url("+images[current]+")";
+bg.style.opacity=1;
 
 current++;
 
-if(current >= images.length){
-current = 0;
+if(current>=images.length){
+current=0;
 }
 
 },800);
@@ -46,20 +46,20 @@ setInterval(changeBackground,5000);
 
 /* タイプライター */
 
-const text =
+const text=
 "4ヶ月記念日おめでとう。\nいつもありがとう。\nこれからもよろしくね。\n大好きだよ。";
 
-let i = 0;
-const speed = 80;
+let i=0;
 
 function typeWriter(){
 
-if(i < text.length){
+if(i<text.length){
 
-document.getElementById("message").innerHTML += text.charAt(i);
+document.getElementById("message").innerHTML+=text.charAt(i);
 
 i++;
-setTimeout(typeWriter,speed);
+
+setTimeout(typeWriter,80);
 
 }
 
@@ -69,27 +69,28 @@ typeWriter();
 
 
 
-/* 🌸 桜エフェクト */
+/* 🌸 桜 */
 
-const canvas = document.getElementById("sparkle");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("sakura");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const ctx=canvas.getContext("2d");
 
-let petals = [];
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-for(let i=0;i<35;i++){
+let petals=[];
+
+for(let i=0;i<50;i++){
 
 petals.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 
-size:Math.random()*10+14,  // 少し大きく
+size:Math.random()*12+8,
 
-speedY:Math.random()*0.8+0.5,
-speedX:Math.random()*0.8-0.4,
+speedY:Math.random()*0.8+0.3,
+speedX:Math.random()*0.6-0.3,
 
 rotation:Math.random()*360,
 rotationSpeed:(Math.random()-0.5)*0.02
@@ -105,10 +106,9 @@ ctx.save();
 ctx.translate(p.x,p.y);
 ctx.rotate(p.rotation);
 
-ctx.fillStyle="rgba(255,192,203,0.95)";
-ctx.beginPath();
+ctx.fillStyle="rgba(255,192,203,0.9)";
 
-/* 桜の5枚花びら */
+ctx.beginPath();
 
 for(let i=0;i<5;i++){
 
@@ -146,15 +146,15 @@ for(let p of petals){
 
 drawPetal(p);
 
-p.y += p.speedY;
-p.x += p.speedX;
+p.y+=p.speedY;
+p.x+=p.speedX;
 
-p.rotation += p.rotationSpeed;
+p.rotation+=p.rotationSpeed;
 
-if(p.y > canvas.height+20){
+if(p.y>canvas.height+20){
 
-p.y = -20;
-p.x = Math.random()*canvas.width;
+p.y=-20;
+p.x=Math.random()*canvas.width;
 
 }
 
