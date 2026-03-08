@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>4ヶ月記念日</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:sans-serif;
+    color:white;
+
+    /* 背景画像 */
+    background-image:url("IMG_9763.JPEG");
+    background-size:cover;
+    background-position:center;
+}
+
+#message{
+    font-size:32px;
+    background:rgba(0,0,0,0.4);
+    padding:30px;
+    border-radius:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="message"></div>
+
+<script>
+
+const text = "4ヶ月記念日おめでとう。\nいつもありがとう。\nこれからもよろしくね。\n大好きだよ。";
+
+let i = 0;
+const speed = 80; // 文字表示スピード
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+typeWriter();
+
+</script>
+
+</body>
+</html>
