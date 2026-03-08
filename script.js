@@ -80,14 +80,14 @@ canvas.height=window.innerHeight;
 
 let petals=[];
 
-for(let i=0;i<50;i++){
+for(let i=0;i<35;i++){
 
 petals.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 
-size:Math.random()*12+8,
+size:Math.random()*10+6,
 
 speedY:Math.random()*0.8+0.3,
 speedX:Math.random()*0.6-0.3,
