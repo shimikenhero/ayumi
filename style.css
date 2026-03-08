@@ -9,22 +9,23 @@ body{
     color:white;
     overflow:hidden;
 
-    background-image:url("2856C812-51A6-4756-8D68-9FCB0AA09324.JPEG");
     background-size:cover;
     background-position:center;
+    transition:background-image 1.5s ease;
 }
 
 /* 背景暗くする */
+
 body::before{
     content:"";
     position:absolute;
     width:100%;
     height:100%;
     background:rgba(0,0,0,0.35);
-    backdrop-filter: blur(3px);
 }
 
 /* メッセージカード */
+
 .container{
 
     position:relative;
@@ -39,8 +40,6 @@ body::before{
 
     box-shadow:0 10px 40px rgba(0,0,0,0.4);
 
-    animation:fadeIn 2s ease;
-
 }
 
 #message{
@@ -52,26 +51,6 @@ body::before{
     white-space:pre-line;
 
     letter-spacing:2px;
-
-}
-
-/* フェード */
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-        transform:translateY(20px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
 
 }
 
@@ -91,7 +70,7 @@ body::before{
 
     0%{
 
-        transform:translateY(0) scale(1);
+        transform:translateY(0);
         opacity:0;
 
     }
@@ -104,7 +83,7 @@ body::before{
 
     100%{
 
-        transform:translateY(-800px) scale(1.5);
+        transform:translateY(-800px);
         opacity:0;
 
     }
