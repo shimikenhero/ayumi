@@ -27,7 +27,6 @@ bg.style.opacity = 0;
 setTimeout(()=>{
 
 bg.style.backgroundImage = "url('" + images[current] + "')";
-
 bg.style.opacity = 1;
 
 current++;
@@ -40,12 +39,7 @@ current = 0;
 
 }
 
-/* 最初 */
-
 changeBackground();
-
-/* 5秒ごと */
-
 setInterval(changeBackground,5000);
 
 
@@ -56,7 +50,6 @@ const text =
 "4ヶ月記念日おめでとう。\nいつもありがとう。\nこれからもよろしくね。\n大好きだよ。";
 
 let i = 0;
-
 const speed = 80;
 
 function typeWriter(){
@@ -66,7 +59,6 @@ if(i < text.length){
 document.getElementById("message").innerHTML += text.charAt(i);
 
 i++;
-
 setTimeout(typeWriter,speed);
 
 }
@@ -74,36 +66,6 @@ setTimeout(typeWriter,speed);
 }
 
 typeWriter();
-
-
-
-/* ハート */
-
-function createHeart(){
-
-const heart = document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML = "❤";
-
-heart.style.left = Math.random()*100 + "vw";
-
-heart.style.bottom = "-20px";
-
-heart.style.fontSize = (15 + Math.random()*25) + "px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-
-heart.remove();
-
-},7000);
-
-}
-
-setInterval(createHeart,700);
 
 
 
@@ -117,16 +79,20 @@ canvas.height = window.innerHeight;
 
 let petals = [];
 
-for(let i=0;i<40;i++){
+for(let i=0;i<35;i++){
 
 petals.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-size:Math.random()*12+8,
-speedY:Math.random()*1+0.5,
-speedX:Math.random()*1-0.5,
-rotate:Math.random()*360
+
+size:Math.random()*10+14,  // 少し大きく
+
+speedY:Math.random()*0.8+0.5,
+speedX:Math.random()*0.8-0.4,
+
+rotation:Math.random()*360,
+rotationSpeed:(Math.random()-0.5)*0.02
 
 });
 
@@ -137,18 +103,36 @@ function drawPetal(p){
 ctx.save();
 
 ctx.translate(p.x,p.y);
-ctx.rotate(p.rotate);
+ctx.rotate(p.rotation);
 
-ctx.fillStyle="rgba(255,182,193,0.9)";
+ctx.fillStyle="rgba(255,192,203,0.95)";
+ctx.beginPath();
+
+/* 桜の5枚花びら */
+
+for(let i=0;i<5;i++){
+
+ctx.rotate(Math.PI*2/5);
 
 ctx.beginPath();
 
 ctx.moveTo(0,0);
 
-ctx.bezierCurveTo(-p.size,-p.size,p.size,-p.size,0,p.size);
-ctx.bezierCurveTo(-p.size,p.size,p.size,p.size,0,0);
+ctx.bezierCurveTo(
+p.size*0.4,-p.size*0.4,
+p.size*0.9,-p.size*0.2,
+0,-p.size
+);
+
+ctx.bezierCurveTo(
+-p.size*0.9,-p.size*0.2,
+-p.size*0.4,-p.size*0.4,
+0,0
+);
 
 ctx.fill();
+
+}
 
 ctx.restore();
 
@@ -164,9 +148,10 @@ drawPetal(p);
 
 p.y += p.speedY;
 p.x += p.speedX;
-p.rotate += 0.01;
 
-if(p.y > canvas.height){
+p.rotation += p.rotationSpeed;
+
+if(p.y > canvas.height+20){
 
 p.y = -20;
 p.x = Math.random()*canvas.width;
