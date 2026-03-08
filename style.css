@@ -1,0 +1,112 @@
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family: "Hiragino Sans","Yu Gothic",sans-serif;
+    color:white;
+    overflow:hidden;
+
+    background-image:url("2856C812-51A6-4756-8D68-9FCB0AA09324.JPEG");
+    background-size:cover;
+    background-position:center;
+}
+
+/* 背景暗くする */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter: blur(3px);
+}
+
+/* メッセージカード */
+.container{
+
+    position:relative;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(10px);
+
+    padding:40px 60px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+
+    animation:fadeIn 2s ease;
+
+}
+
+#message{
+
+    font-size:34px;
+
+    line-height:1.6;
+
+    white-space:pre-line;
+
+    letter-spacing:2px;
+
+}
+
+/* フェード */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ハート */
+
+.heart{
+
+    position:absolute;
+
+    color:#ff9ecb;
+
+    animation:float 6s linear infinite;
+
+}
+
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0) scale(1);
+        opacity:0;
+
+    }
+
+    10%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:translateY(-800px) scale(1.5);
+        opacity:0;
+
+    }
+
+}
