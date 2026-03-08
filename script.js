@@ -33,9 +33,7 @@ bg.style.opacity = 1;
 current++;
 
 if(current >= images.length){
-
 current = 0;
-
 }
 
 },800);
@@ -109,73 +107,76 @@ setInterval(createHeart,700);
 
 
 
-/* キラキラ */
+/* 🌸 桜エフェクト */
 
 const canvas = document.getElementById("sparkle");
-
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
-
 canvas.height = window.innerHeight;
 
-let particles = [];
+let petals = [];
 
-for(let i=0;i<80;i++){
+for(let i=0;i<40;i++){
 
-particles.push({
+petals.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-r:Math.random()*2+1,
-d:Math.random()*1
+size:Math.random()*12+8,
+speedY:Math.random()*1+0.5,
+speedX:Math.random()*1-0.5,
+rotate:Math.random()*360
 
 });
 
 }
 
-function draw(){
+function drawPetal(p){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.save();
 
-ctx.fillStyle="white";
+ctx.translate(p.x,p.y);
+ctx.rotate(p.rotate);
+
+ctx.fillStyle="rgba(255,182,193,0.9)";
 
 ctx.beginPath();
 
-for(let i=0;i<particles.length;i++){
+ctx.moveTo(0,0);
 
-let p=particles[i];
-
-ctx.moveTo(p.x,p.y);
-
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
-
-}
+ctx.bezierCurveTo(-p.size,-p.size,p.size,-p.size,0,p.size);
+ctx.bezierCurveTo(-p.size,p.size,p.size,p.size,0,0);
 
 ctx.fill();
 
-update();
+ctx.restore();
 
 }
 
-function update(){
+function animate(){
 
-for(let i=0;i<particles.length;i++){
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-let p=particles[i];
+for(let p of petals){
 
-p.y += p.d;
+drawPetal(p);
+
+p.y += p.speedY;
+p.x += p.speedX;
+p.rotate += 0.01;
 
 if(p.y > canvas.height){
 
-p.y = 0;
-
+p.y = -20;
 p.x = Math.random()*canvas.width;
 
 }
 
 }
 
+requestAnimationFrame(animate);
+
 }
 
-setInterval(draw,33);
+animate();
