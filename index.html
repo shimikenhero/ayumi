@@ -13,20 +13,76 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    font-family:sans-serif;
+    font-family: "Hiragino Sans","Yu Gothic",sans-serif;
     color:white;
+    overflow:hidden;
 
-    /* 背景画像 */
-    background-image:url("2856C812-51A6-4756-8D68-9FCB0AA09324.JPEG");
+    background-image:url("IMG_9763.JPEG");
     background-size:cover;
     background-position:center;
 }
 
+/* 背景を少し暗くする */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter: blur(2px);
+}
+
+/* メッセージカード */
 #message{
-    font-size:32px;
-    background:rgba(0,0,0,0.4);
-    padding:30px;
-    border-radius:15px;
+    position:relative;
+    font-size:34px;
+    line-height:1.6;
+    padding:40px 50px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+
+    white-space:pre-line;
+    letter-spacing:2px;
+
+    animation:fadeIn 2s ease;
+}
+
+/* フェード */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ハート */
+.heart{
+    position:absolute;
+    color:#ff9ecb;
+    font-size:20px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-800px) scale(1.5);
+        opacity:0;
+    }
 }
 
 </style>
@@ -41,17 +97,39 @@ body{
 const text = "4ヶ月記念日おめでとう。\nいつもありがとう。\nこれからもよろしくね。\n大好きだよ。";
 
 let i = 0;
-const speed = 80; // 文字表示スピード
+const speed = 80;
 
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("message").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
 }
 
 typeWriter();
+
+
+/* ハート生成 */
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.bottom = "-20px";
+    heart.style.fontSize = (15+Math.random()*25)+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },6000);
+}
+
+setInterval(createHeart,600);
 
 </script>
 
